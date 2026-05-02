@@ -1,0 +1,36 @@
+node_modules/
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+server.err
+server.log
+dev-start.log
+app.log
+
+# VSCode settings
+.vscode/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Package lock
+package-lock.json
+
+# Prisma generated files
+prisma/migrations/*/migration.sql
+prisma/migrations/*/migration_lock.toml
+
+# Ignore public if used for build output
+public/

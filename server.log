@@ -1,0 +1,252 @@
+=== BOOTSTRAP STARTING ===
+=== Creating NestJS app ===
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +47ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +5ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuditModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMonitoringModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMaintenanceModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mThrottlerModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRedisModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mQueueModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFraudModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDisputesModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTicketModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mContributionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWalletModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTransactionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNotificationsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mChatModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPayoutsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGroupsModule dependencies initialized[39m[38;5;3m +1ms[39m
+=== NestJS app created ===
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mChatGateway subscribed to the "join_conversation" message[39m[38;5;3m +125ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mChatGateway subscribed to the "leave_conversation" message[39m[38;5;3m +3ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mChatGateway subscribed to the "typing" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/auth}:[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/login, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/register, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/refresh, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/logout, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/users}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/me, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/:id/verify-bvn, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/:id/onboard-invite, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mFraudController {/fraud}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/fraud/flags, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/fraud/flags/:id/review, PATCH} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWalletController {/wallet}:[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/wallet/:userId/balance, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:51 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/wallet/:userId/transactions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/wallet/admin/non-provisioned, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/wallet/admin/provision/:walletId, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTransactionsController {/transactions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/transactions, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGroupController {/groups}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/discover/random, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:id/feed, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:id/start, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGroupContributorController {/groups/:groupId/contributors}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/contributors, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/contributors/:contributorId, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/contributors/swap, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGroupJoinController {/groups/:groupId/join}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/join, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/join/:requestId/approve, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/join/:requestId/reject, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGroupInviteController {/groups/:groupId/invite}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/contact, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/join-link, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/join-link, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/join-link/qrcode, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/revoke-link, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/pause-link, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/resume-link, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/regenerate-link, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/proxy-register/init, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/groups/:groupId/invite/proxy-register/confirm, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mInviteActionController {/invites}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invites/:id/accept, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invites/:id/reject, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicInviteController {/invites}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invites/:id/onboard, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mNotificationsController {/notifications}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/notifications/:id/read, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mContributionsController {/contributions}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/cycles, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/groups/:id/cycle/current, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/groups/:id/contributions/status, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/cycles/:id/defaulters, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/payments, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/contributions/cycles/:id/complete, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPayoutsController {/payouts}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/payouts/execute, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/payouts/:cycleId/run, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPaymentWebhookController {/webhooks/payments}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/payments/charge, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/payments/confirm, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/payments/payout, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/payments/paystack, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/payments/admin/reconcile/paystack, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPaymentIntentController {/payments/intents}:[39m[38;5;3m +2ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/payments/intents, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWithdrawController {/withdraws}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/withdraws, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/withdraws/confirm, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mDisputesController {/disputes}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/disputes, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/disputes/user/:userId, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mChatController {/chat}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/chat/groups/:groupId/conversation, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/chat/conversations/:conversationId/messages, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/chat/conversations/:conversationId/messages, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/chat/conversations/:conversationId/read, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/chat/groups/:groupId/conversations, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTicketController {/tickets}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tickets, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tickets/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tickets/my/tickets, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tickets/group/:groupId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/tickets/:id/status, PATCH} route[39m[38;5;3m +0ms[39m
+[23:24:51.866] [32mINFO[39m (55624): [36mCORS enabled (open) in non-production[39m
+[23:24:51.938] [32mINFO[39m (55624): [36mSwagger UI available at /api[39m
+Prisma connected (pool=10)
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mPayouts worker delegated to external worker process[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mScheduled reconcile-paystack job cron=*/5 * * * *[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mScheduled apply-late-fees job cron=0 0 * * *[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mBullMQ queues & workers initialized[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[RedisService] [39m[32mRedis connected 127.0.0.1:6379 db=0[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:24:52 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +7ms[39m
+[23:24:52.253] [32mINFO[39m (55624): [36mNon-production mode: skipping global ThrottlerGuard[39m
+[23:24:52.258] [32mINFO[39m (55624): [36mBull Board available at /queues[39m
+[23:24:52.262] [32mINFO[39m (55624): [36mServer listening on port 3000[39m
+Purged 0 rows from ContributionPayment
+Purged 0 rows from Transaction
+Purged 0 rows from AuditLog
+Purged 0 rows from ContributionCycle
+Purged 0 rows from GroupContributor
+Purged 0 rows from Dispute
+Purged 0 rows from Wallet
+Purged 0 rows from Group
+Purged 0 rows from User
+[23:30:26.360] [31mERROR[39m (55624): [36mUnauthorized[39m
+    [35mexception[39m: {
+      "stack": "UnauthorizedException: Unauthorized\n    at JwtAuthGuard.handleRequest (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:60:30)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:44:124\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:83:24\n    at allFailed (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:110:18)\n    at attempt (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:183:28)\n    at strategy.fail (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:305:9)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport-jwt\lib\strategy.js:106:33\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:190:16\n    at getSecret (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:97:14)\n    at module.exports [as verify] (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:101:10)",
+      "response": {
+        "message": "Unauthorized",
+        "statusCode": 401
+      },
+      "status": 401,
+      "options": {},
+      "message": "Unauthorized",
+      "name": "UnauthorizedException"
+    }
+    [35mpath[39m: "/wallet/admin/non-provisioned?page=1&limit=20&search=john"
+    [35mrequestId[39m: "3c688a8a-47ad-48cb-a79e-b3700084979f"
+[23:30:45.927] [31mERROR[39m (55624): [36mUnauthorized[39m
+    [35mexception[39m: {
+      "stack": "UnauthorizedException: Unauthorized\n    at JwtAuthGuard.handleRequest (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:60:30)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:44:124\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:83:24\n    at allFailed (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:110:18)\n    at attempt (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:183:28)\n    at strategy.fail (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:305:9)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport-jwt\lib\strategy.js:106:33\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:190:16\n    at getSecret (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:97:14)\n    at module.exports [as verify] (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:101:10)",
+      "response": {
+        "message": "Unauthorized",
+        "statusCode": 401
+      },
+      "status": 401,
+      "options": {},
+      "message": "Unauthorized",
+      "name": "UnauthorizedException"
+    }
+    [35mpath[39m: "/wallet/admin/non-provisioned?page=1&limit=20"
+    [35mrequestId[39m: "753eba60-23ff-4084-aad1-7a2aaac2fee0"
+[23:31:11.890] [31mERROR[39m (55624): [36mUnauthorized[39m
+    [35mexception[39m: {
+      "stack": "UnauthorizedException: Unauthorized\n    at JwtAuthGuard.handleRequest (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:60:30)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:44:124\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\passport\dist\auth.guard.js:83:24\n    at allFailed (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:110:18)\n    at attempt (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:183:28)\n    at strategy.fail (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport\lib\middleware\authenticate.js:305:9)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\passport-jwt\lib\strategy.js:106:33\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:190:16\n    at getSecret (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:97:14)\n    at module.exports [as verify] (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\jsonwebtoken\verify.js:101:10)",
+      "response": {
+        "message": "Unauthorized",
+        "statusCode": 401
+      },
+      "status": 401,
+      "options": {},
+      "message": "Unauthorized",
+      "name": "UnauthorizedException"
+    }
+    [35mpath[39m: "/users?page=1&limit=20&search=john%40example.com&sortBy=createdAt&includeUnverified=false"
+    [35mrequestId[39m: "e6c9c386-8b01-4882-abaf-a1a8faa8a554"
+[23:31:47.130] [31mERROR[39m (55624): [36mForbidden resource[39m
+    [35mexception[39m: {
+      "stack": "ForbiddenException: Forbidden resource\n    at canActivateFn (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:137:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:42:31\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-proxy.js:9:17",
+      "response": {
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+      },
+      "status": 403,
+      "options": {},
+      "message": "Forbidden resource",
+      "name": "ForbiddenException"
+    }
+    [35mpath[39m: "/wallet/admin/non-provisioned?page=1&limit=20"
+    [35mrequestId[39m: "66f5497b-1035-416f-aace-80a24e117598"
+[23:36:24.268] [31mERROR[39m (55624): [36mForbidden resource[39m
+    [35mexception[39m: {
+      "stack": "ForbiddenException: Forbidden resource\n    at canActivateFn (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:137:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:42:31\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-proxy.js:9:17",
+      "response": {
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+      },
+      "status": 403,
+      "options": {},
+      "message": "Forbidden resource",
+      "name": "ForbiddenException"
+    }
+    [35mpath[39m: "/wallet/admin/non-provisioned?page=1&limit=20"
+    [35mrequestId[39m: "a533c68b-4377-4bb1-8d1d-b1d4188c52a3"
+[23:36:28.306] [31mERROR[39m (55624): [36mForbidden resource[39m
+    [35mexception[39m: {
+      "stack": "ForbiddenException: Forbidden resource\n    at canActivateFn (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:137:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:42:31\n    at async C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-proxy.js:9:17",
+      "response": {
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+      },
+      "status": 403,
+      "options": {},
+      "message": "Forbidden resource",
+      "name": "ForbiddenException"
+    }
+    [35mpath[39m: "/wallet/admin/non-provisioned?page=1&limit=20"
+    [35mrequestId[39m: "96325a91-5a8a-47ca-9956-c6c59e01655a"
+[23:36:51.709] [31mERROR[39m (55624): [36mNo refresh token[39m
+    [35mexception[39m: {
+      "stack": "BadRequestException: No refresh token\n    at AuthController.refresh (C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\dist\modules\auth\auth.controller.js:102:19)\n    at C:\Users\hands\STARTUP-PROJECTS\Hajor_2.0\node_modules\@nestjs\core\router\router-execution-context.js:38:29\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+      "response": {
+        "message": "No refresh token",
+        "error": "Bad Request",
+        "statusCode": 400
+      },
+      "status": 400,
+      "options": {},
+      "message": "No refresh token",
+      "name": "BadRequestException"
+    }
+    [35mpath[39m: "/auth/refresh"
+    [35mrequestId[39m: "1ae6e46d-c370-4421-8319-901f04e9eb12"
+[32m[Nest] 55624  - [39m04/06/2026, 11:38:21 PM [32m    LOG[39m [38;5;3m[NotificationsProcessorService] [39m[32mNotifications worker processing job 192 name=provision-virtual-account[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:38:22 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mJob 192 completed[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:39:17 PM [32m    LOG[39m [38;5;3m[NotificationsProcessorService] [39m[32mNotifications worker processing job 193 name=provision-virtual-account[39m
+[32m[Nest] 55624  - [39m04/06/2026, 11:39:18 PM [32m    LOG[39m [38;5;3m[QueueService] [39m[32mJob 193 completed[39m

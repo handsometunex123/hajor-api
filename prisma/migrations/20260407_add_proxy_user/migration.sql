@@ -1,0 +1,6 @@
+-- Add proxy user support to User table
+ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "isProxyUser" BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "notificationChannel" TEXT NOT NULL DEFAULT 'EMAIL';
+ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "lastActiveAt" TIMESTAMP(3);
+
+CREATE INDEX IF NOT EXISTS "User_isProxyUser_idx" ON "User"("isProxyUser");

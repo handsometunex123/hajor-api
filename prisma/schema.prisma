@@ -1,0 +1,587 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum GroupFrequency {
+  WEEKLY
+  MONTHLY
+}
+
+enum GroupStatus {
+  NOT_STARTED
+  STARTED
+  COMPLETED
+  ARCHIVED
+  CANCELLED
+}
+
+enum ContributionCycleStatus {
+  PENDING
+  COLLECTING
+  COMPLETED
+}
+
+enum ContributionPaymentStatus {
+  PAID
+  UNPAID
+  FAILED
+  DEFAULTED
+}
+
+enum DisputeStatus {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+  REJECTED
+}
+
+enum NotificationType {
+  PAYMENT_REMINDER
+  PAYMENT_SUCCESS
+  PAYMENT_FAILED
+  PAYOUT_SUCCESS
+  PAYOUT_FAILED
+  TERMS_NUDGE
+  GROUP_CREATED
+  GROUP_STARTED
+  GROUP_COMPLETED
+  GROUP_FROZEN
+  GROUP_UNFROZEN
+  GROUP_INVITE
+  JOIN_APPROVED
+  INVITE_ACCEPTED
+  LATE_FEE_CHARGED
+  CYCLE_COMPLETE
+  WALLET_NOT_PROVISIONED
+  WALLET_PROVISIONED
+  DEBIT_FAILED
+  PASSWORD_RESET
+  KYC_REQUIRED
+  DISPUTE_OPENED
+  DISPUTE_RESOLVED
+  DISPUTE_REJECTED
+  EMAIL_VERIFICATION
+  GROUP_CANCELLED
+  PAYMENT_DEFAULTED
+  SWAP_REQUESTED
+  SWAP_APPROVED
+  SWAP_REJECTED
+  SWAP_EXECUTED
+  CYCLE_RESCHEDULE_REQUESTED
+  CYCLE_RESCHEDULE_APPROVED
+  CYCLE_RESCHEDULE_REJECTED
+}
+
+enum ContributorSwapStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum UserRole {
+  USER
+  PROXY
+  SUPER_ADMIN
+}
+
+enum JoinRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id                  String             @id @default(uuid())
+  firstName           String
+  lastName            String
+  email               String
+  phone               String
+  dob                 DateTime?
+  password            String
+  transactionPin      String?  // bcrypt-hashed 6-digit transaction PIN
+  address             String?
+  utilityBillUrl      String?
+  trustScore          Int                @default(0)
+  bvnVerified         Boolean            @default(false)
+  bvnVerifiedAt       DateTime?
+  bvnVerificationRef  String?
+  kycTier             Int?
+  emailVerifiedAt     DateTime?
+  wallet              Wallet?
+  groupMemberships    GroupContributor[]
+  administeredGroups  Group[]            @relation("AdminGroups")
+  disputes            Dispute[]
+  notifications       Notification[]
+  userIdentifiers     UserIdentifier[]
+  fraudFlags          FraudFlag[]
+  auditLogs           AuditLog[]         @relation("ActorLogs")
+  refreshTokens       RefreshToken[]
+  groupJoinRequests   GroupJoinRequest[]
+  invitationsReceived Invitation[]       @relation("InvitationRecipient")
+  invitationsSent     Invitation[]       @relation("InvitationInviter")
+  createdJoinLinks    JoinLink[]
+  conversations       Conversation[]
+  sentMessages        Message[]
+  indemnityFormsAsAdmin      IndemnityForm[] @relation("IndemnityAdmin")
+  indemnityFormsAsAddedUser  IndemnityForm[] @relation("IndemnityAddedUser")
+  tickets             Ticket[]           @relation("TicketUser")
+  swapRequestsInitiated ContributorSwapRequest[] @relation("SwapRequester")
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  deletedAt           DateTime?
+  lastActiveAt        DateTime?
+  // Formal user type: USER (default), PROXY (low-tech registered by admin), SUPER_ADMIN (platform operator)
+  role                UserRole           @default(USER)
+  // notificationChannel: "EMAIL" | "SMS" | "BOTH" — independent of role
+  notificationChannel String             @default("EMAIL")
+  // Proxy users (registered by admin) must change their temp password on first login
+  mustChangePassword  Boolean            @default(false)
+
+  referralCode        String?            @unique
+  referredById        String?            // User who referred this user
+  referredUsers       User[]             @relation("UserReferrals")
+  referredBy          User?              @relation("UserReferrals", fields: [referredById], references: [id])
+
+  @@index([email])
+  @@index([phone])
+  @@index([role])
+  @@index([referralCode])
+  @@index([referredById])
+}
+
+model Wallet {
+  id           String        @id @default(uuid())
+  user         User?         @relation(fields: [userId], references: [id])
+  userId       String?       @unique
+  group        Group?        @relation(fields: [groupId], references: [id])
+  groupId      String?       @unique
+  // Paystack Virtual Account fields
+  paystackVirtualAccountId String?
+  paystackAccountNumber    String?
+  paystackBank             String?
+  paystackMeta             Json?
+  paystackProvisionStatus  String?
+  paystackProvisionAttempts Int @default(0)
+  paystackProvisionedAt    DateTime?
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+
+  @@index([userId])
+  @@index([groupId])
+}
+
+model Transaction {
+  id        String            @id @default(uuid())
+  wallet    Wallet            @relation(fields: [walletId], references: [id])
+  walletId  String
+  type      TransactionType
+  amount    Decimal           @db.Decimal(18, 2)
+  reference String
+  status    TransactionStatus
+  metadata  Json?
+  createdAt DateTime          @default(now())
+  deletedAt DateTime?
+
+  @@index([walletId])
+  @@index([reference])
+}
+
+model Group {
+  id                         String              @id @default(uuid())
+  name                       String
+  description                String?
+  admin                      User                @relation("AdminGroups", fields: [adminId], references: [id])
+  adminId                    String
+  wallet                     Wallet?
+  contributionAmount         Decimal             @db.Decimal(18, 2)
+  frequency                  GroupFrequency
+  maxSlots                   Int
+  serviceCharge              Decimal             @default(0) @db.Decimal(18, 2)
+  lateFee                    Decimal             @default(0) @db.Decimal(18, 2)
+  status                     GroupStatus         @default(NOT_STARTED)
+  startDate                  DateTime?
+  firstContributionDate      DateTime?
+  gracePeriodDays            Int                 @default(1)
+  adminIndemnityAccepted     Boolean             @default(false)
+  adminIndemnityAcceptedAt   DateTime?
+  adminIndemnityIpAddress    String?
+  termsVersion               Int                 @default(1)
+  frozenAt                   DateTime?
+  frozenReason               String?
+  contributors               GroupContributor[]
+  cycles                     ContributionCycle[]
+  joinRequests               GroupJoinRequest[]
+  invitations                Invitation[]
+  joinLinks                  JoinLink[]
+  conversations              Conversation[]
+  indemnityForms             IndemnityForm[]
+  tickets                    Ticket[]
+  swapRequests               ContributorSwapRequest[]
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+  deletedAt                  DateTime?
+
+  @@index([adminId])
+}
+
+enum JoinMethod {
+  join_request
+  admin_add
+  invitation
+  migration
+  self_signup
+  api
+}
+
+model GroupContributor {
+  id              String                @id @default(uuid())
+  group           Group                 @relation(fields: [groupId], references: [id])
+  groupId         String
+  user            User                  @relation(fields: [userId], references: [id])
+  userId          String
+  displayId       String
+  payoutOrder     Int?
+  isActive        Boolean               @default(true)
+  termsAcceptedAt      DateTime?
+  termsVersionAccepted Int?
+  joinedAt             DateTime              @default(now())
+  joinMethod           JoinMethod @default(join_request)
+  contributions   ContributionPayment[]
+  swapRequestsAsA ContributorSwapRequest[] @relation("SwapContributorA")
+  swapRequestsAsB ContributorSwapRequest[] @relation("SwapContributorB")
+  deletedAt       DateTime?
+
+  @@unique([groupId, displayId])
+  @@unique([groupId, payoutOrder])
+  @@index([groupId])
+  @@index([userId])
+}
+
+model ContributionCycle {
+  id               String                  @id @default(uuid())
+  group            Group                   @relation(fields: [groupId], references: [id])
+  groupId          String
+  cycleNumber      Int
+  contributionDate DateTime
+  payoutDate       DateTime
+  status           ContributionCycleStatus @default(PENDING)
+  completedAt      DateTime?
+  payments         ContributionPayment[]
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  deletedAt        DateTime?
+
+  @@unique([groupId, cycleNumber])
+  @@index([groupId])
+}
+
+model ContributionPayment {
+  id                 String                    @id @default(uuid())
+  cycle              ContributionCycle         @relation(fields: [cycleId], references: [id])
+  cycleId            String
+  groupContributor   GroupContributor          @relation(fields: [groupContributorId], references: [id])
+  groupContributorId String
+  amount             Decimal                   @db.Decimal(18, 2)
+  status             ContributionPaymentStatus @default(UNPAID)
+  paidAt             DateTime?
+  createdAt          DateTime                  @default(now())
+  updatedAt          DateTime                  @updatedAt
+  deletedAt          DateTime?
+
+  @@index([cycleId])
+  @@index([groupContributorId])
+  @@index([status])
+}
+
+model Dispute {
+  id          String        @id @default(uuid())
+  user        User          @relation(fields: [userId], references: [id])
+  userId      String
+  type        String
+  status      DisputeStatus @default(OPEN)
+  description String?
+  evidenceUrl String?
+  adminNotes  String?
+  resolvedBy  String?
+  resolvedAt  DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deletedAt   DateTime?
+
+  @@index([userId])
+  @@index([status])
+}
+
+model AuditLog {
+  id         String    @id @default(uuid())
+  actor      User?     @relation("ActorLogs", fields: [actorId], references: [id])
+  actorId    String?
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  createdAt  DateTime  @default(now())
+  deletedAt  DateTime?
+
+  @@index([actorId])
+  @@index([entityType, entityId])
+}
+
+model Notification {
+  id        String           @id @default(uuid())
+  user      User?            @relation(fields: [userId], references: [id])
+  userId    String?
+  type      NotificationType
+  title     String?
+  message   String?
+  isRead    Boolean          @default(false)
+  metadata  Json?
+  createdAt DateTime         @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+enum FraudSeverity {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum FraudStatus {
+  ACTIVE
+  REVIEWED
+}
+
+model UserIdentifier {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  type      String
+  valueHash String
+  createdAt DateTime @default(now())
+
+  @@index([type, valueHash])
+  @@index([userId])
+}
+
+model FraudFlag {
+  id        String        @id @default(uuid())
+  user      User?         @relation(fields: [userId], references: [id])
+  userId    String?
+  groupId   String?
+  reason    String
+  severity  FraudSeverity @default(LOW)
+  status    FraudStatus   @default(ACTIVE)
+  metadata  Json?
+  createdAt DateTime      @default(now())
+
+  @@index([userId])
+  @@index([groupId])
+  @@index([status])
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  tokenHash  String // store only hash of token
+  revoked    Boolean  @default(false)
+  replacedBy String? // id of replacement token
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model GroupJoinRequest {
+  id        String            @id @default(uuid())
+  group     Group             @relation(fields: [groupId], references: [id])
+  groupId   String
+  user      User              @relation(fields: [userId], references: [id])
+  userId    String
+  status    JoinRequestStatus @default(PENDING)
+  acceptedTerms           Boolean   @default(false)
+  adminAcceptedIndemnity  Boolean   @default(false)
+  createdAt DateTime          @default(now())
+
+  @@index([groupId])
+  @@index([userId])
+}
+
+model Invitation {
+  id          String            @id @default(uuid())
+  group       Group             @relation(fields: [groupId], references: [id])
+  groupId     String
+  user        User?             @relation("InvitationRecipient", fields: [userId], references: [id])
+  userId      String?
+  invitedBy   User              @relation("InvitationInviter", fields: [invitedById], references: [id])
+  invitedById String
+  metadata    Json?
+  status      JoinRequestStatus @default(PENDING)
+  expiresAt   DateTime?
+  createdAt   DateTime          @default(now())
+
+  @@index([groupId])
+  @@index([userId])
+  @@index([invitedById])
+}
+
+model JoinLink {
+  id          String    @id @default(uuid())
+  group       Group     @relation(fields: [groupId], references: [id])
+  groupId     String
+  token       String    @unique
+  isActive    Boolean   @default(true)
+  pausedAt    DateTime?
+  pausedById  String?
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  createdById String
+  reusable    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+
+  @@index([groupId])
+  @@index([token])
+}
+enum MessageType {
+  TEXT
+  SYSTEM
+}
+
+model Conversation {
+  id        String    @id @default(uuid())
+  groupId   String
+  group     Group     @relation(fields: [groupId], references: [id])
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([groupId, userId])
+  @@index([groupId])
+  @@index([userId])
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId String
+  senderId       String
+  sender         User         @relation(fields: [senderId], references: [id])
+  type           MessageType  @default(TEXT)
+  content        String
+  isRead         Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([isRead])
+}
+
+model IndemnityForm {
+  id                 String   @id @default(uuid())
+  groupId            String
+  group              Group    @relation(fields: [groupId], references: [id])
+  adminId            String
+  admin              User     @relation("IndemnityAdmin", fields: [adminId], references: [id])
+  addedUserId        String
+  addedUser          User     @relation("IndemnityAddedUser", fields: [addedUserId], references: [id])
+  attestationText    String
+  adminSignature     String?
+  ipAddress          String?
+  agreementAccepted  Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  @@unique([groupId, addedUserId])
+  @@index([groupId])
+  @@index([adminId])
+  @@index([addedUserId])
+}
+
+enum TicketType {
+  CONTRIBUTOR_REPLACEMENT
+  LEAVE_GROUP
+  DISPUTE
+  CYCLE_RESCHEDULE
+  OTHER
+}
+
+enum TicketStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  CLOSED
+}
+
+model Ticket {
+  id            String       @id @default(uuid())
+  type          TicketType
+  status        TicketStatus @default(PENDING)
+  groupId       String
+  group         Group        @relation(fields: [groupId], references: [id])
+  userId        String
+  user          User         @relation("TicketUser", fields: [userId], references: [id])
+  reason        String?
+  contributorId String?      // For CONTRIBUTOR_REPLACEMENT: the contributor to replace
+  newUserId     String?      // For CONTRIBUTOR_REPLACEMENT: the new user to add
+  cycleId       String?      // For CYCLE_RESCHEDULE: the cycle to reschedule
+  requestedDate DateTime?    // For CYCLE_RESCHEDULE: the requested new contribution date
+  adminNotes    String?
+  resolvedAt    DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([type])
+  @@index([status])
+  @@index([groupId])
+  @@index([userId])
+}
+
+model ContributorSwapRequest {
+  id                     String                 @id @default(uuid())
+  group                  Group                  @relation(fields: [groupId], references: [id])
+  groupId                String
+  requestedBy            User                   @relation("SwapRequester", fields: [requestedById], references: [id])
+  requestedById          String
+  contributorA           GroupContributor       @relation("SwapContributorA", fields: [contributorAId], references: [id])
+  contributorAId         String
+  contributorB           GroupContributor       @relation("SwapContributorB", fields: [contributorBId], references: [id])
+  contributorBId         String
+  status                 ContributorSwapStatus  @default(PENDING)
+  contributorAApprovedAt DateTime?
+  contributorBApprovedAt DateTime?
+  executedAt             DateTime?
+  rejectedById           String?
+  rejectedAt             DateTime?
+  cancelledAt            DateTime?
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+
+  @@index([groupId])
+  @@index([requestedById])
+  @@index([contributorAId])
+  @@index([contributorBId])
+  @@index([status])
+}

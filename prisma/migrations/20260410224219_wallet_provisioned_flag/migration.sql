@@ -1,0 +1,14 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `isVerified` on the `User` table. All the data in the column will be lost.
+
+*/
+-- DropForeignKey
+
+-- AlterTable
+ALTER TABLE "User" DROP COLUMN "isVerified",
+ADD COLUMN     "bvnVerified" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "walletProvisioned" BOOLEAN NOT NULL DEFAULT false;
+
+-- AddForeignKey
