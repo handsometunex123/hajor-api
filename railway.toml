@@ -2,3 +2,4 @@
 
 [build.variables]
 RAILPACK_INSTALL_CMD = "npm ci --include=dev"
+RAILPACK_BUILD_CMD = "npx nest build"
