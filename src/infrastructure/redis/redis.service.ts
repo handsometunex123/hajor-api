@@ -15,7 +15,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit() {
-    const { host, port, db } = getRedisConfig();
+    const { host, port, db, password } = getRedisConfig();
     // lazyConnect: true – do not auto-connect on creation; the first command triggers it.
     // This prevents ioredis from throwing unhandled 'error' events during startup
     // that would crash Node.js when Redis is unreachable.
@@ -23,6 +23,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       host,
       port,
       db,
+      password,
       lazyConnect: true,
       enableOfflineQueue: true,
       maxRetriesPerRequest: null,
