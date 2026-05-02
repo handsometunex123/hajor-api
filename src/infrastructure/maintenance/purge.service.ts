@@ -20,20 +20,15 @@ export class PurgeService implements OnModuleInit {
 
     // Prefer model-based deletes for safety and parameterization.
     // Order deletes to avoid FK constraint violations where possible.
+    // For guarded models (Transaction, Wallet), pass _internal: true to bypass the Prisma middleware guard.
     const ops: { name: string; fn: () => Promise<any> }[] = [
       { name: 'ContributionPayment', fn: () => this.prisma.contributionPayment.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
-      { name: 'Transaction', fn: async () => this.prisma.$transaction(async (tx) => {
-        await (tx as any).$executeRaw`SELECT set_config('hajor.allow_internal', 'true', true)`;
-        return tx.transaction.deleteMany({ where: { deletedAt: { lt: cutoff } } });
-      }) },
+      { name: 'Transaction', fn: () => (this.prisma.transaction.deleteMany as any)({ where: { deletedAt: { lt: cutoff } }, _internal: true }) },
       { name: 'AuditLog', fn: () => this.prisma.auditLog.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
       { name: 'ContributionCycle', fn: () => this.prisma.contributionCycle.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
       { name: 'GroupContributor', fn: () => this.prisma.groupContributor.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
       { name: 'Dispute', fn: () => this.prisma.dispute.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
-      { name: 'Wallet', fn: async () => this.prisma.$transaction(async (tx) => {
-        await (tx as any).$executeRaw`SELECT set_config('hajor.allow_internal', 'true', true)`;
-        return tx.wallet.deleteMany({ where: { deletedAt: { lt: cutoff } } });
-      }) },
+      { name: 'Wallet', fn: () => (this.prisma.wallet.deleteMany as any)({ where: { deletedAt: { lt: cutoff } }, _internal: true }) },
       { name: 'Group', fn: () => this.prisma.group.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
       { name: 'User', fn: () => this.prisma.user.deleteMany({ where: { deletedAt: { lt: cutoff } } }) },
     ];
