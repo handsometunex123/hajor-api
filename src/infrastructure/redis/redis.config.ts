@@ -20,5 +20,6 @@ export function getRedisConfig(): RedisConnectionConfig {
   const db = parseInt(process.env.REDIS_DB || '0', 10);
   const redisPassword = process.env.REDIS_PASSWORD || undefined;
 
+  console.log('Redis config:', { host, port, db, hasPassword: !!redisPassword });
   return { host, port, db, password: redisPassword };
 }
