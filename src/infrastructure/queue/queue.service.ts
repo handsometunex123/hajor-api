@@ -36,9 +36,9 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     const disableInApp = process.env.DISABLE_IN_APP_WORKERS === 'true';
-    const { host, port, db } = getRedisConfig();
+    const { host, port, db, password } = getRedisConfig();
 
-    this.redisConnection = new Redis({ host, port, db, lazyConnect: false });
+    this.redisConnection = new Redis({ host, port, db, password, lazyConnect: false });
     // Attach error listener so Node.js does NOT crash on Redis connection errors.
     // Without this, ioredis emits an 'error' event with no listener → process exit.
     this.redisConnection.on('error', (err: any) => {
@@ -60,7 +60,7 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     // QueueSchedulers must be created for every queue that uses delayed jobs (including retries
     // and repeatable jobs). In BullMQ v1 the Worker does NOT promote delayed jobs by itself —
     // the QueueScheduler is the dedicated process responsible for that.
-    const schedulerConn = { host, port, db };
+    const schedulerConn = { host, port, db, password };
     this.paymentsScheduler = new QueueScheduler('payments', { connection: schedulerConn });
     this.payoutsScheduler = new QueueScheduler('payouts', { connection: schedulerConn });
     this.notificationsScheduler = new QueueScheduler('notifications', { connection: schedulerConn });
