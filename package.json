@@ -7,7 +7,7 @@
     "start": "node dist/main.js",
     "start:prod": "prisma migrate deploy && node dist/main.js",
     "start:dev": "nest start --watch",
-    "build": "nest build",
+    "build": "npx nest build",
     "migrate:deploy": "prisma migrate deploy",
     "start:workers": "node dist/worker/payments.worker.js & node dist/worker/notifications.worker.js",
     "dev:all": "npm run build && cross-env DISABLE_IN_APP_WORKERS=true concurrently \"node dist/main.js\" \"node dist/worker/payments.worker.js\" \"node dist/worker/notifications.worker.js\"",
