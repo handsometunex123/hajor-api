@@ -2,6 +2,7 @@ import { Injectable, OnModuleDestroy, OnModuleInit, Logger } from '@nestjs/commo
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 import { MonitoringService } from '../monitoring/monitoring.service';
+import { getRedisConfig } from './redis.config';
 
 @Injectable()
 export class RedisService implements OnModuleInit, OnModuleDestroy {
@@ -14,9 +15,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   ) {}
 
   onModuleInit() {
-    const host = this.config.get<string>('REDIS_HOST', '127.0.0.1');
-    const port = parseInt(this.config.get<string>('REDIS_PORT', '6379'), 10);
-    const db = parseInt(this.config.get<string>('REDIS_DB', '0'), 10);
+    const { host, port, db } = getRedisConfig();
     // lazyConnect: true – do not auto-connect on creation; the first command triggers it.
     // This prevents ioredis from throwing unhandled 'error' events during startup
     // that would crash Node.js when Redis is unreachable.

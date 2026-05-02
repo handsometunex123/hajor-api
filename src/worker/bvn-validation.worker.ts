@@ -5,11 +5,9 @@ import { PrismaService } from '../infrastructure/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { KycService } from '../modules/users/kyc.service';
 import { Worker, Job } from 'bullmq';
+import { getRedisConfig } from '../infrastructure/redis/redis.config';
 
-const redisHost = process.env.REDIS_HOST || '127.0.0.1';
-const redisPort = parseInt(process.env.REDIS_PORT || '6379', 10);
-const redisDb = parseInt(process.env.REDIS_DB || '0', 10);
-const connection = { host: redisHost, port: redisPort, db: redisDb };
+const connection = getRedisConfig();
 
 const prisma = new PrismaClient();
 const prismaService = new PrismaService();

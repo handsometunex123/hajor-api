@@ -5,13 +5,10 @@ import { ConfigService } from '@nestjs/config';
 import { MonitoringService } from '../infrastructure/monitoring/monitoring.service';
 import { RedisService } from '../infrastructure/redis/redis.service';
 import { TransactionsService } from '../modules/transactions/transactions.service';
-import IORedis from 'ioredis';
 import { Worker, Job, Queue } from 'bullmq';
+import { getRedisConfig } from '../infrastructure/redis/redis.config';
 
-const redisHost = process.env.REDIS_HOST || '127.0.0.1';
-const redisPort = parseInt(process.env.REDIS_PORT || '6379', 10);
-const redisDb = parseInt(process.env.REDIS_DB || '0', 10);
-const connection = { host: redisHost, port: redisPort, db: redisDb };
+const connection = getRedisConfig();
 
 const prisma = new PrismaClient();
 // Create PrismaService wrapper and other services used by TransactionsService

@@ -1,12 +1,10 @@
 import 'reflect-metadata';
 import { PrismaClient } from '@prisma/client';
 import { Worker, Job, Queue } from 'bullmq';
+import { getRedisConfig } from '../infrastructure/redis/redis.config';
 
 const prisma = new PrismaClient();
-const redisHost = process.env.REDIS_HOST || '127.0.0.1';
-const redisPort = parseInt(process.env.REDIS_PORT || '6379', 10);
-const redisDb = parseInt(process.env.REDIS_DB || '0', 10);
-const connection = { host: redisHost, port: redisPort, db: redisDb };
+const connection = getRedisConfig();
 
 async function processNotification(job: Job) {
   const { userId, type, payload } = job.data;

@@ -5,6 +5,7 @@ import { Queue, Worker, Job, QueueScheduler } from 'bullmq';
 import * as Sentry from '@sentry/node';
 import { NotificationsProcessorService } from './notifications-processor.service';
 import { PaymentsProcessorService } from './payments-processor.service';
+import { getRedisConfig } from '../redis/redis.config';
 
 @Injectable()
 export class QueueService implements OnModuleInit, OnModuleDestroy {
@@ -35,9 +36,7 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     const disableInApp = process.env.DISABLE_IN_APP_WORKERS === 'true';
-    const host = this.config.get<string>('REDIS_HOST', '127.0.0.1');
-    const port = parseInt(this.config.get<string>('REDIS_PORT', '6379'), 10);
-    const db = parseInt(this.config.get<string>('REDIS_DB', '0'), 10);
+    const { host, port, db } = getRedisConfig();
 
     this.redisConnection = new Redis({ host, port, db, lazyConnect: false });
     // Attach error listener so Node.js does NOT crash on Redis connection errors.

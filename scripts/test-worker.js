@@ -11,11 +11,9 @@
 require('dotenv').config();
 const { Queue, QueueEvents } = require('bullmq');
 const { PrismaClient }       = require('@prisma/client');
+const { getRedisConfig }     = require('./redis.config');
 
-const REDIS_HOST = process.env.REDIS_HOST || '127.0.0.1';
-const REDIS_PORT = parseInt(process.env.REDIS_PORT || '6379', 10);
-const REDIS_DB   = parseInt(process.env.REDIS_DB  || '0',    10);
-const connection = { host: REDIS_HOST, port: REDIS_PORT, db: REDIS_DB };
+const connection = getRedisConfig();
 
 const DELAY_MS   = 5_000;
 const TIMEOUT_MS = 30_000;

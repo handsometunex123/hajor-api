@@ -3,11 +3,9 @@ import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
 import { sendAlert } from '../infrastructure/monitoring/alert';
 import { Worker, Job } from 'bullmq';
+import { getRedisConfig } from '../infrastructure/redis/redis.config';
 
-const redisHost = process.env.REDIS_HOST || '127.0.0.1';
-const redisPort = parseInt(process.env.REDIS_PORT || '6379', 10);
-const redisDb = parseInt(process.env.REDIS_DB || '0', 10);
-const connection = { host: redisHost, port: redisPort, db: redisDb };
+const connection = getRedisConfig();
 
 const prisma = new PrismaClient();
 
