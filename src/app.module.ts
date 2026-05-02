@@ -14,7 +14,7 @@ import { DisputesModule } from './modules/disputes/disputes.module';
 import { FraudModule } from './modules/fraud/fraud.module';
 import { ChatModule } from './modules/chat/chat.module';
 import { TicketModule } from './modules/tickets/ticket.module';
-import { ThrottlerModule, ThrottlerStorage } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule, ThrottlerStorage } from '@nestjs/throttler';
 import { HealthModule } from './health/health.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './modules/auth/jwt.guard';
@@ -69,6 +69,7 @@ import { RedisThrottlerStorage } from './infrastructure/throttler/redis-throttle
       provide: ThrottlerStorage,
       useClass: RedisThrottlerStorage,
     },
+    ThrottlerGuard
   ],
 })
 export class AppModule {}
