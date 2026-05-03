@@ -31,6 +31,7 @@ export class KycService {
       dateOfBirth: string | null;
     };
   }> {
+    // Development mode: auto-pass with mock data
     if (process.env.NODE_ENV === 'development') {
       return {
         success: true,
@@ -43,14 +44,44 @@ export class KycService {
       };
     }
 
+    // KYC bypass mode: allow signup without real verification
+    // Use in development/testing before real provider is set up
+    const bypassMode = process.env.KYC_BYPASS === 'true';
+    if (bypassMode) {
+      this.logger.warn('KYC bypass mode is ENABLED — BVN validation is mocked');
+      return {
+        success: true,
+        data: {
+          verificationId: 'bypass-' + Math.random().toString(36).substring(2, 12).toUpperCase(),
+          firstName: payload.firstName || null,
+          lastName: payload.lastName || null,
+          dateOfBirth: payload.dob || null,
+        }
+      };
+    }
+
     const url = this.config.get<string>('KYC_PROVIDER_URL');
     const apiKey = this.config.get<string>('KYC_PROVIDER_KEY');
+
+    if (!url) {
+      this.logger.error('KYC_PROVIDER_URL is not configured in production. Set KYC_BYPASS=true to bypass validation.');
+      return {
+        success: false,
+        data: {
+          verificationId: null,
+          firstName: null,
+          lastName: null,
+          dateOfBirth: null,
+        }
+      };
+    }
 
     try {
       const body = { bvn, ...payload };
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
 
+      this.logger.debug(`Calling KYC provider: ${url}`);
       const resp = await axios.post(url, body, { headers, timeout: 10_000 });
       const data = resp?.data;
 
@@ -72,16 +103,22 @@ export class KycService {
       const lastName = data?.lastName || data?.lastname || data?.last_name || null;
       const dateOfBirth = data?.dateOfBirth || data?.dob || data?.date_of_birth || null;
 
+      this.logger.debug(`KYC verification result: success=${success}, verificationId=${verificationId}`);
       return { success, data: { verificationId, firstName, lastName, dateOfBirth } };
     } catch (err: any) {
-      this.logger.warn('KYC provider call failed, returning dev verificationId', err?.message ?? err);
+      this.logger.error('KYC provider request failed', {
+        url,
+        error: err?.message ?? err,
+        status: err?.response?.status,
+        responseData: err?.response?.data,
+      });
       return {
         success: false,
         data: {
-          verificationId: 'dev-' + Math.random().toString(36).substring(2, 12).toUpperCase(),
+          verificationId: null,
           firstName: payload.firstName || null,
           lastName: payload.lastName || null,
-          dateOfBirth: payload.dateOfBirth || null,
+          dateOfBirth: payload.dob || null,
         }
       };
     }

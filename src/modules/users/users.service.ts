@@ -89,7 +89,8 @@ export class UsersService {
       phone: payload.phone,
     });
     if (!result?.success) {
-      throw new BadRequestException('BVN validation failed');
+      console.error('BVN validation failed:', { bvn: payload.bvn, result, payloadKeys: Object.keys(payload) });
+      throw new BadRequestException('BVN validation failed. Please verify your details and try again.');
     }
     // Optionally, check name/dob match here as in createUser
     const normalize = (s: string) => (s || '').trim().toLowerCase();
@@ -98,6 +99,10 @@ export class UsersService {
       normalize(result.data.lastName) !== normalize(payload.lastName) ||
       (payload.dob && result.data.dateOfBirth && normalize(result.data.dateOfBirth) !== normalize(payload.dob))
     ) {
+      console.warn('BVN data mismatch:', {
+        provided: { firstName: payload.firstName, lastName: payload.lastName, dob: payload.dob },
+        kycRecord: { firstName: result.data.firstName, lastName: result.data.lastName, dob: result.data.dateOfBirth }
+      });
       throw new BadRequestException('Name or date of birth does not match BVN record');
     }
     // Generate a short-lived token and store in Redis
@@ -110,7 +115,7 @@ export class UsersService {
       phone: payload.phone,
       verificationId: result.data.verificationId,
     }), 300); // 5 minutes expiry
-    console.log(await this.redis.get(`bvn:signup:${token}`));
+    console.log(`BVN validation successful for ${payload.firstName} ${payload.lastName}`);
     return { token };
   }
 
