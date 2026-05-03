@@ -290,7 +290,9 @@ async function bootstrap() {
   // Swagger setup – must be registered on Express BEFORE app.init() so its routes
   // land ahead of NestJS's router in the middleware stack. If added after init,
   // NestJS intercepts /api with a 404 before Swagger can handle it.
-  if (!isProduction) {
+  // Configurable via ENABLE_SWAGGER env var (defaults to enabled in non-production)
+  const enableSwagger = process.env.ENABLE_SWAGGER !== 'false' && (!isProduction || process.env.ENABLE_SWAGGER === 'true');
+  if (enableSwagger) {
     try {
       const config = new DocumentBuilder()
         .setTitle('Hajor API')
@@ -321,7 +323,7 @@ async function bootstrap() {
       logger.error('Swagger setup failed (continuing without docs):', error);
     }
   } else {
-    logger.info('Production mode: Swagger UI disabled');
+    logger.info('Swagger UI disabled (set ENABLE_SWAGGER=true to enable)');
   }
 
   // Explicitly initialize the app so that all onModuleInit lifecycle hooks
