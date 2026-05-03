@@ -276,15 +276,20 @@ async function bootstrap() {
   // Bull Board – register the Express middleware NOW (before app.init) so it sits
   // ahead of NestJS's router in the Express stack. NestJS would otherwise intercept
   // /queues with a 404 if the middleware were added after init. Queues are wired below.
+  // Configurable via ENABLE_BULL_BOARD env var (defaults to enabled in non-production)
+  const enableBullBoard = process.env.ENABLE_BULL_BOARD !== 'false' && (!isProduction || process.env.ENABLE_BULL_BOARD === 'true');
   let bullBoardServerAdapter: InstanceType<typeof BullBoardExpressAdapter> | null = null;
-  if (!isProduction) {
+  if (enableBullBoard) {
     try {
       bullBoardServerAdapter = new BullBoardExpressAdapter();
       bullBoardServerAdapter.setBasePath('/queues');
       expressInstance.use('/queues', bullBoardServerAdapter.getRouter());
+      logger.info('Bull Board queue dashboard will be available at /queues');
     } catch (err) {
       logger.warn('Bull Board pre-registration failed:', err);
     }
+  } else {
+    logger.info('Bull Board disabled (set ENABLE_BULL_BOARD=true to enable)');
   }
 
   // Swagger setup – must be registered on Express BEFORE app.init() so its routes
@@ -344,7 +349,7 @@ async function bootstrap() {
   }
 
   // Bull Board – wire up the queues now that QueueService is initialized
-  if (!isProduction && bullBoardServerAdapter) {
+  if (enableBullBoard && bullBoardServerAdapter) {
     try {
       const queueService = app.get(QueueService);
       createBullBoard({
